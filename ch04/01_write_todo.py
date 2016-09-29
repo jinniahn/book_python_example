@@ -1,0 +1,6 @@
+f = open('todo.txt', 'wt') 
+f.write('2016-05-01\n')
+f.write(' - [ ] 책읽기\n') 
+f.write(' - [ ] 커피 한잔\n') 
+f.write(' - [ ] 회의\n') 
+f.close( )

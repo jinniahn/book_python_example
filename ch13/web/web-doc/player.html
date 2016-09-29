@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{title}} </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css')}}" type="text/css"></link>
+    <link rel="stylesheet" href="{{url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap-theme.min.css')}}" type="text/css"></link>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" type="text/css"></link>
+  </head>
+  <body class="player">
+    {% include 'include/header.html' %}
+    <!-- content -->
+    <!-- player -->
+    <div class="container">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="col-md-12 current-song">
+            <div class="text-center">
+              <img src="{{current_song.img_url}}"> </img>
+              <div class="juke-control">
+                <button onClick="player.play(); return false;">Play</button>
+                <button onClick="player.stop(); return false;">Stop</button>
+                <button onClick="player.next(); return false;">Next</button>
+              </div>
+              <h3> {{current_song.title}} </h3>
+              <div>
+                <a href="{{current_song.url}}">가보기</a>
+              </div>
+            </div>            
+          </div>
+          <table class="table table-striped">
+            <tr>
+              <th>#</th>              
+              <th>제목</th>
+              <th>플레이수</th>
+              <th>곡 길이</th>
+            </tr>
+            {% for song in playlist %}
+            <tr>
+              <td>{{song.uid}}</td>                
+              <td>{{song.title}}</td>
+              <td>{{song.played_count}}</td>
+              <td>{{song.duration | duration_time }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- player list -->
+    <div class="container">
+    </div>
+
+    {% include 'include/footer.html' %}
+    <!-- js -->
+    <script src="{{url_for('static', filename='bower_components/jquery/dist/jquery.min.js')}}"></script>    
+    <script src="{{url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/player.js')}}"></script>
+    <script>
+    $('document').ready(function(){
+        // 주기적으로 현재 플레이 되고 있는 곡을 확인해서 재로드한다.
+        // TODO:
+        //   - 재로드하지 않고 필요한 데이터만 로드할것
+        //   - websocket으로 realtime으로 업데이트하기
+
+        current_song = {{current_song|tojson|safe}};
+        // 1초당 확인
+        setInterval(function(){
+            player.get_current_song(function(resp){
+                if( current_song.uid != resp.uid ) {
+                    window.location.reload();
+                }
+            });
+        }, 1000);
+        
+    });
+    </script>
+  </body>
+</html>  

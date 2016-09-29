@@ -1,0 +1,21 @@
+.main {
+}
+
+.main img {
+    width: 720px;
+}
+
+.player .current-song img {
+    max-width: 500px;
+}
+
+.add_song h2 {
+    font-size: 20px;
+    margin-left: 20px;
+    color: #6d5858;
+    margin-bottom: 20px;
+}
+
+.add_song .help-block {
+    margin-left: 20px;
+}

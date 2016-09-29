@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.css')}}" type="text/css"></link>
+    <link rel="stylesheet" href="{{url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap-theme.css')}}" type="text/css"></link>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" type="text/css"></link>
+    <title>TV Controller</title>
+  </head>
+  <body class="main">
+    {% include 'include/header.html' %}
+    <!-- content -->
+    <div class="container">
+      <div class="row">
+        <h3> 내 리모콘들 </h3>
+        <ul>
+          {% for remo in remos %}
+          <li>
+            <div id="remo-{{remo}}">
+              <a href="/remo/{{remo}}">
+                {{remo}}
+              </a>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      
+    </div>
+
+    {% include 'include/footer.html' %}
+    <!-- js -->
+    <script src="{{url_for('static', filename='bower_components/jquery/dist/jquery.min.js')}}"></script>    
+    <script src="{{url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>        
+  </body>
+</html>  

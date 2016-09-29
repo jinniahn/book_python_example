@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css')}}" type="text/css"></link>
+    <link rel="stylesheet" href="{{url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap-theme.min.css')}}" type="text/css"></link>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" type="text/css"></link>
+  </head>
+  <body class="add_song">
+    {% include 'include/header.html' %}
+    <!-- content -->
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <h2>새 노래 추가</h2>
+          <div class="col-lg-6">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Youtube link" id="youtube_url">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" onClick="player.add_url($('#youtube_url').val(), $('#cb_add_playlist').prop('checked')); return false;">Add</button>
+              </span>
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+          <p class="help-block"> 추가하려고 하는 Youtube 링크를 추가한다. </p>
+        </div>
+      </div> <!-- end for row -->
+
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <h2>노래 목록에 있는 노래들 추가</h2>
+          <div class="col-lg-6">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Youtube link" id="youtube_list_url">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" onClick="player.add_list_url($('#youtube_list_url').val(), $('#cb_add_playlist').prop('checked')); return false;">Add</button>
+              </span>
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+          <p class="help-block"> 추가하려고 하는 Youtube 링크를 추가한다. </p>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <h2>옵션</h2>
+          <div class="col-lg-6">
+            <div class="input-group">
+              <input type="checkbox" id="cb_add_playlist"></input>
+              <label> &nbsp; 플레이 리스트에 추가</label>
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+          <p class="help-block"> 추가하려고 하는 Youtube 링크를 추가한다. </p>
+        </div>
+      </div>            
+    </div>
+
+    {% include 'include/footer.html' %}
+    <!-- js -->
+    <script src="{{url_for('static', filename='bower_components/jquery/dist/jquery.min.js')}}"></script>    
+    <script src="{{url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/player.js')}}"></script>            
+  </body>
+</html>  

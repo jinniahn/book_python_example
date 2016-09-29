@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{title}} </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="{{url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css')}}" type="text/css"></link>
+    <link rel="stylesheet" href="{{url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap-theme.min.css')}}" type="text/css"></link>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" type="text/css"></link>
+  </head>
+  <body>
+    {% include 'include/header.html' %}
+    <!-- content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1> 제어</h1>
+          <table class="table table-striped">
+            <tr>
+              <th>키 이름</th>
+              <th>비고</th>
+            </tr>
+
+            {% for k in buttons %}
+            <tr>
+              <th>{{k}}</th>
+              <th>
+                <button onClick="remo_control.execute('{{remo_id}}', '{{k}}');return false;"> 실행 </button>
+              </th>
+            </tr>
+            {% endfor %}
+          </table>          
+        </div>
+
+      </div>
+    </div>
+
+    {% include 'include/footer.html' %}
+    <!-- js -->
+    <script src="{{url_for('static', filename='bower_components/jquery/dist/jquery.min.js')}}"></script>    
+    <script src="{{url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/control.js')}}"></script>        
+  </body>
+</html>  
