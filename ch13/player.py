@@ -22,9 +22,9 @@ class MusicPlayer(object):
     def _create_webdriver(self):
         if sys.platform == 'darwin':
             driver = webdriver.Chrome(os.path.join(curdir, 'webdriver', 'mac', "chromedriver"))
-        elif sys.platform.starswith('linux'):
+        elif sys.platform.startswith('linux'):
             driver = webdriver.Chrome(os.path.join(curdir, 'webdriver', 'linux32', "chromedriver"))
-        elif sys.platform.starswith('win'):
+        elif sys.platform.startswith('win'):
             driver = webdriver.Chrome(os.path.join(curdir, 'webdriver', 'win', "chromedriver.exe"))
         else:
             raise Exception('not support platform ' + sys.platform)
@@ -101,7 +101,7 @@ class MusicPlayer(object):
         return ret
 
     def play_url(self, url):
-        self.driver.get(url)
+          self.driver.get(url)
         #time.sleep(1)
         for _ in range(10):
             time.sleep(0.5)

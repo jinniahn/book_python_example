@@ -76,14 +76,18 @@ class AsyncMusicPlayer(threading.Thread):
                     self.play_next_song()
                 elif self.player.is_unplable():
                     self.play_next_song()
-                    
                 self.handle_cmd();
             except queue.Empty:
                 pass
+            except KeyboardInterrupt:
+                break
             except Exception as e:
                 # 에러가 발생하면 에러의 종료를 출력
-                print(type(e))
-                print(e)
+                #print('----')
+                #print(type(e))
+                #print(e)
+                break
+                
 
     def play_next_song(self):
         " 다음 곡 "
