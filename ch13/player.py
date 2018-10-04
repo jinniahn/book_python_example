@@ -34,7 +34,7 @@ class MusicPlayer(object):
         is_existed_jquery = self._exec_js('return !!window.jQuery')
         if not is_existed_jquery:
             #print('inject jquery')
-            with open(os.path.join(curdir, 'jquery', 'jquery-3.0.0.js')) as f:
+            with open(os.path.join(curdir, 'jquery', 'jquery-3.3.1.js')) as f:
                 try:
                     self._exec_js(f.read())
                 except Exception as f:
@@ -101,7 +101,7 @@ class MusicPlayer(object):
         return ret
 
     def play_url(self, url):
-          self.driver.get(url)
+        self.driver.get(url)
         #time.sleep(1)
         for _ in range(10):
             time.sleep(0.5)
