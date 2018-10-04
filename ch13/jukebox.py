@@ -85,9 +85,7 @@ class AsyncMusicPlayer(threading.Thread):
                 # 에러가 발생하면 에러의 종료를 출력
                 #print('----')
                 #print(type(e))
-                #print(e)
-                break
-                
+                print(e)
 
     def play_next_song(self):
         " 다음 곡 "
@@ -111,8 +109,14 @@ class AsyncMusicPlayer(threading.Thread):
         self.player.stop()
 
     def play(self):
-        " 다시 플레이"
-        self.player.play()
+        "Pause되었던 곡 다시 플레이"
+        print(self.url)
+        print(self.current_song)
+        if self.url=='data:,':
+            # 아무것도 재생하고 있지 않으면
+            self.play_next_song()
+        else:
+            self.player.play()
 
     def handle_cmd(self):
         "명령 처리"
